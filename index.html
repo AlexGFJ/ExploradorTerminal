@@ -1,0 +1,59 @@
+<!doctype html>
+<!--
+TERMINAL ATLAS — VERSION ESTATICA
+1. Extrae los tres archivos del ZIP en una misma carpeta.
+2. Abre index.html con doble clic en un navegador moderno.
+3. Para editar: contenido y comportamiento en app.js; colores en styles.css.
+No requiere Python, Node.js, npm, servidor, base de datos ni compilacion.
+Los diagramas y el icono estan incorporados en el codigo.
+La consulta funciona sin conexion; los enlaces a documentacion externa necesitan Internet.
+Esta copia local no incluye la autenticacion del alojamiento privado de Sites.
+-->
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Tu manual de consulta de Linux, Git, Docker y SSH. Encuentra comandos por tarea, revisa los pasos y copia ejemplos con contexto.">
+  <meta name="theme-color" content="#691c32">
+  <title>Explorador de comandos</title>
+  <link rel="icon" href="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2048%2048%22%3E%3Crect%20width%3D%2248%22%20height%3D%2248%22%20rx%3D%2212%22%20fill%3D%22%23691c32%22%2F%3E%3Cpath%20d%3D%22m13%2015%209%209-9%209m13%200h10%22%20fill%3D%22none%22%20stroke%3D%22%23c9a977%22%20stroke-width%3D%223%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E%0A" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Saltar al contenido</a>
+  <aside class="sidebar" id="sidebar">
+    <nav aria-label="Navegación principal">
+      <div class="nav-primary"><button class="nav-item active" id="explore" data-icon="grid">Explorar <span class="nav-count" id="total-nav">54</span></button><button class="nav-item" id="gitflow" data-icon="branch">Método Gitflow <span class="nav-count guide-label">GUÍA</span></button></div>
+      <p class="nav-label">¿QUÉ QUIERES HACER?</p>
+      <div id="goal-nav"></div>
+    </nav>
+    <div class="sidebar-footer"><div class="mini-terminal"><span class="live-dot"></span> Un poco menos de memoria.<br><span>Un poco más de terminal.</span></div><button id="help" class="help-btn" data-icon="book">Cómo usar este atlas <span>↗</span></button><p>Consulta, revisa y luego ejecuta.</p></div>
+  </aside>
+  <div class="workspace">
+    <header class="topbar"><button class="icon-btn mobile-menu" id="menu" aria-label="Abrir menú" aria-expanded="false" data-icon="menu"></button><div class="breadcrumb">Consulta local <span>/</span> <strong>Explorador de comandos</strong></div><span class="private-badge" data-icon="book">Consulta local</span></header>
+    <main id="main">
+      <section class="intro" id="intro" aria-labelledby="page-title"><div><div class="eyebrow"><span class="small-line"></span> MENOS BUSCAR. MÁS HACER.</div><h1 id="page-title">Tu siguiente tarea.<br><span>El comando correcto.</span></h1><p>Linux, Git, Docker y SSH, organizados por lo que quieres resolver.<br class="desktop-break"> Ejemplos listos para adaptar, con el contexto que necesitas.</p></div><div class="atlas-mark" aria-hidden="true"><span class="mark-coordinate">REF. 01 — 04</span><div class="mark-symbol">&gt;<span>_</span></div><span class="mark-caption">EL MAPA DE TU TERMINAL</span></div></section>
+      <section class="gitflow-guide" id="gitflow-guide" aria-labelledby="gitflow-title" hidden></section>
+      <section class="search-section" aria-label="Buscar recetas">
+        <label class="sr-only" for="search">Describe lo que quieres hacer o busca un comando</label>
+        <div class="search-box"><span data-icon="search"></span><input id="search" type="search" placeholder="¿Qué quieres hacer? Describe tu tarea…" autocomplete="off" spellcheck="false"><button id="clear-search" class="clear-search" aria-label="Limpiar búsqueda" hidden data-icon="x"></button><kbd>/</kbd></div>
+        <div class="suggestions"><span>Prueba con</span><button data-query="reiniciar un servicio tras cambiar .env">Cambiar un .env <span>↗</span></button><button data-query="copiar un archivo por SSH">Copiar por SSH <span>↗</span></button><button data-query="crear feature gitflow">Crear una feature <span>↗</span></button></div>
+      </section>
+      <section class="catalog" aria-labelledby="results-heading">
+        <div class="filter-row"><div class="tool-tabs" id="tool-tabs" role="group" aria-label="Filtrar por herramienta"></div><label class="risk-filter"><span class="sr-only">Filtrar por nivel de riesgo</span><span data-icon="shield"></span><select id="risk"><option value="all">Todos los riesgos</option><option value="lectura">Solo lectura</option><option value="cambio">Modifica el entorno</option><option value="destructivo">Destructivos</option></select></label></div>
+        <div class="results-toolbar"><div><h2 id="results-heading">Recetas para resolver <span id="result-count">54</span></h2><p id="result-context">Un buen punto de partida para tu próxima tarea.</p></div><button id="reset" class="reset-btn" hidden data-icon="x">Limpiar filtros</button><span class="result-order" id="result-order">Selección del atlas <span data-icon="sliders"></span></span></div>
+        <div id="results" class="recipe-grid" aria-live="polite" aria-busy="false"></div>
+        <div id="empty" class="empty-state" hidden></div>
+        <div class="load-more-wrap"><button id="load-more" class="load-more">Ver más recetas <span data-icon="arrow-down"></span></button><span id="showing"></span></div>
+      </section>
+      <footer class="main-footer"><span><span class="footer-prompt">&gt;_</span> El contexto también es parte del comando.</span><span id="catalog-stats">54 recetas · 4 herramientas · Sin ejecución automática</span></footer>
+    </main>
+  </div>
+  <div class="drawer-overlay" id="drawer-overlay" hidden></div>
+  <dialog class="recipe-drawer" id="detail" aria-labelledby="detail-title"><div class="drawer-top"><span class="eyebrow">RECETA DEL ATLAS</span><button class="icon-btn" id="close-detail" aria-label="Cerrar receta" data-icon="x"></button></div><div id="detail-body"></div></dialog>
+  <dialog class="confirm-dialog" id="confirm" aria-labelledby="confirm-title"><div class="confirm-icon" data-icon="alert"></div><h2 id="confirm-title">Antes de copiar, revisa el impacto.</h2><p id="confirm-warning"></p><pre><code id="confirm-code"></code></pre><label class="confirm-check"><input type="checkbox" id="confirm-check"><span>He revisado el destino y entiendo qué datos o recursos se perderán.</span></label><div class="confirm-actions"><button id="cancel-copy" class="secondary-btn">Cancelar</button><button id="confirm-copy" class="danger-btn" disabled>Copiar comando</button></div></dialog>
+  <dialog class="help-dialog" id="help-dialog" aria-labelledby="help-title"><button class="icon-btn help-close" id="close-help" aria-label="Cerrar ayuda" data-icon="x"></button><span class="eyebrow">UN MANUAL PARA USAR</span><h2 id="help-title">De la intención a la terminal.</h2><ol><li><strong>Describe tu objetivo.</strong> Escribe una frase como «copiar un archivo por SSH». La búsqueda relaciona palabras y sinónimos con recetas del catálogo.</li><li><strong>Acota y revisa.</strong> Filtra por herramienta, objetivo o riesgo. Abre una receta para leer sus pasos, requisitos y documentación.</li><li><strong>Adapta el ejemplo.</strong> Sustituye rutas, nombres y servidores antes de pegarlo en tu terminal. El atlas nunca ejecuta comandos.</li></ol><div class="help-note" data-icon="book">Consulta las recetas y copia los ejemplos para adaptarlos a tu entorno. La búsqueda se resuelve aquí, sin enviar tus consultas a un modelo.</div><p class="help-footnote">Linux con herramientas GNU, Git moderno, Docker Compose v2 y OpenSSH. Algunas recetas requieren systemd, sudo o utilidades adicionales; cada una indica su contexto.</p></dialog>
+  <div id="toast" role="status" class="toast" hidden></div>
+</body>
+</html>
